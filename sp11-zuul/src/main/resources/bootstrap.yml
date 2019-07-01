@@ -6,6 +6,13 @@ spring:
         service-id: config-server
       name: zuul
       profile: dev
+      
+    inetutils:
+      ignored-interfaces:
+        - VM.*
+#      preferred-networks:
+#        - 192.168.0  
+ 
   rabbitmq:
     host: 192.168.92.132
     port: 5672

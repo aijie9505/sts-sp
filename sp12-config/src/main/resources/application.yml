@@ -1,13 +1,17 @@
 spring:
   application:
     name: config-server
+  profiles:
+    active: native
     
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/aijie9505/sp-config.git
-          searchPaths: sp-config
+        native:
+          search-locations: classpath:/sp-config
+#        git:
+#          uri: https://github.com/aijie9505/sp-config.git
+#          searchPaths: sp-config
   rabbitmq:
     host: 192.168.92.132
     port: 5672
@@ -21,6 +25,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka    
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}    
 
 management:
   endpoints:
